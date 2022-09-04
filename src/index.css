@@ -1,0 +1,119 @@
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #aaa;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #335ddc;
+    border-radius: 8px;
+}
+
+.container {
+    width: 1440px;
+    margin: 0 auto;
+}
+
+.ant-drawer-body {
+    padding: 0 !important;
+}
+
+.ant-drawer-content-wrapper {
+    width: 250px !important;
+}
+
+.ant-layout-header {
+    padding: 0 25px !important;
+}
+
+.burger-menu {
+    display: none;
+}
+
+.ant-space-align-center.profil-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px !important;
+}
+
+@media screen and (max-width: 1440px) {
+    .container {
+        width: 1020px;
+    }
+}
+
+@media screen and (max-width: 1020px) {
+    .container {
+        width: 768px;
+        padding: 0;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .container {
+        width: 100%;
+        padding: 0 5px;
+    }
+
+    .burger-menu {
+        display: block;
+    }
+
+    .inline-navber {
+        display: none !important;
+    }
+
+    .site-layout .container {
+        justify-content: space-between;
+    }
+
+    .buttons {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .ant-space-align-center {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 0 !important;
+    }
+
+    .new-buttons {
+        gap: 10px !important;
+    }
+
+    .tazalash {
+        gap: 16px !important;
+    }
+
+    .add-button {
+        margin-bottom: 8px;
+    }
+
+    .select-add {
+        margin-bottom: 8px;
+    }
+
+    .ant-card-body {
+        padding: 5px;
+    }
+
+    .ant-statistic-content {
+        font-size: 16px !important;
+    }
+
+    .ant-statistic-title {
+        font-size: 13px !important;
+    }
+
+    .statistic .ant-col-8 {
+        padding: 0 1px !important;
+    }
+
+    .statistic .ant-col-12 {
+        padding: 0 1px !important;
+    }
+}

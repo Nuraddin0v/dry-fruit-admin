@@ -5,6 +5,14 @@ import {
     MenuOutlined,
     UserOutlined,
     LogoutOutlined,
+    CloudUploadOutlined,
+    CloudDownloadOutlined,
+    CloudOutlined,
+    ProfileOutlined,
+    DollarCircleOutlined,
+    AppstoreAddOutlined,
+    TeamOutlined,
+    AppstoreOutlined,
 } from "@ant-design/icons";
 import {
     Link,
@@ -122,6 +130,116 @@ function Navbar() {
                                     />
                                 </Link>
                             ),
+                        },
+                        {
+                            label: "Quruq mevalar",
+                            key: "/dryfruit",
+                            icon: (
+                                <Link to="/dryfruit">
+                                    <ProfileOutlined
+                                        style={{ fontSize: "18px" }}
+                                    />
+                                </Link>
+                            ),
+                        },
+                        {
+                            label: "Sklad",
+                            key: "/warehouse-dryfruit",
+                            icon: (
+                                <Link to="/warehouse-dryfruit">
+                                    <CloudOutlined
+                                        style={{ fontSize: "18px" }}
+                                    />
+                                </Link>
+                            ),
+                        },
+                        {
+                            label: "Kelgan Mahsulotlar",
+                            key: "/income-dryfruit",
+                            icon: (
+                                <Link to="/income-dryfruit">
+                                    <CloudUploadOutlined
+                                        style={{ fontSize: "18px" }}
+                                    />
+                                </Link>
+                            ),
+                        },
+                        {
+                            label: "Sotilgan Mahsulotlar",
+                            key: "/outcome-dryfruit",
+                            icon: (
+                                <Link to="/outcome-dryfruit">
+                                    <CloudDownloadOutlined
+                                        style={{ fontSize: "18px" }}
+                                    />
+                                </Link>
+                            ),
+                        },
+                        {
+                            label: "Qarzlar",
+                            key: "/debts",
+                            icon: (
+                                <Link to="/debts">
+                                    <DollarCircleOutlined
+                                        style={{ fontSize: "18px" }}
+                                    />
+                                </Link>
+                            ),
+                        },
+                        {
+                            label: "Qo'shimchalar",
+                            key: "others",
+                            icon: (
+                                <AppstoreAddOutlined
+                                    style={{ fontSize: "18px" }}
+                                />
+                            ),
+                            children: [
+                                {
+                                    label: "Klientlar",
+                                    key: "/clients",
+                                    icon: (
+                                        <Link to="/clients">
+                                            <TeamOutlined
+                                                style={{ fontSize: "18px" }}
+                                            />
+                                        </Link>
+                                    ),
+                                },
+                                {
+                                    label: "Ishchilar",
+                                    key: "/worker",
+                                    icon: (
+                                        <Link to="/worker">
+                                            <TeamOutlined
+                                                style={{ fontSize: "18px" }}
+                                            />
+                                        </Link>
+                                    ),
+                                },
+                                {
+                                    label: "Foydalanuvchilar",
+                                    key: "/users",
+                                    icon: (
+                                        <Link to="/users">
+                                            <UserOutlined
+                                                style={{ fontSize: "18px" }}
+                                            />
+                                        </Link>
+                                    ),
+                                },
+                                {
+                                    label: "Boshqalar",
+                                    key: "/others",
+                                    icon: (
+                                        <Link to="/others">
+                                            <AppstoreOutlined
+                                                style={{ fontSize: "18px" }}
+                                            />
+                                        </Link>
+                                    ),
+                                },
+                            ],
                         },
                     ]}
                 />

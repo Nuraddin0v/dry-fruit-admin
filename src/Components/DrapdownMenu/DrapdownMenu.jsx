@@ -1,10 +1,17 @@
-import { Button, Drawer, Menu } from "antd";
-import PropTypes from "prop-types";
+import { Drawer, Menu } from "antd";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
     DashboardOutlined,
     UserOutlined,
     LogoutOutlined,
+    CloudUploadOutlined,
+    CloudDownloadOutlined,
+    CloudOutlined,
+    ProfileOutlined,
+    DollarCircleOutlined,
+    AppstoreAddOutlined,
+    TeamOutlined,
+    AppstoreOutlined,
 } from "@ant-design/icons";
 import useToken from "../../Hook/UseToken";
 // import { useData } from "../../Hook/UseData";
@@ -15,7 +22,7 @@ function DrapdownMenu({ onClose, isVisible }) {
     // const { user } = useData();
     const location = useLocation();
 
-    const handleLogOut = e => {
+    const handleLogOut = (e) => {
         e.preventDefault();
         sessionStorage.removeItem("token", token);
         navigate("/login");
@@ -33,7 +40,7 @@ function DrapdownMenu({ onClose, isVisible }) {
                     height: "100%",
                 }}
                 defaultSelectedKeys={[location.pathname]}
-                defaultOpenKeys={["6"]}
+                defaultOpenKeys={["others"]}
                 mode="inline"
                 theme="dark"
                 items={[
@@ -49,6 +56,110 @@ function DrapdownMenu({ onClose, isVisible }) {
                         ),
                     },
                     {
+                        label: "Quruq mevalar",
+                        key: "/dryfruit",
+                        icon: (
+                            <Link to="/dryfruit">
+                                <ProfileOutlined style={{ fontSize: "18px" }} />
+                            </Link>
+                        ),
+                    },
+                    {
+                        label: "Sklad",
+                        key: "/warehouse-dryfruit",
+                        icon: (
+                            <Link to="/warehouse-dryfruit">
+                                <CloudOutlined style={{ fontSize: "18px" }} />
+                            </Link>
+                        ),
+                    },
+                    {
+                        label: "Kelgan Mahsulotlar",
+                        key: "/income-dryfruit",
+                        icon: (
+                            <Link to="/income-dryfruit">
+                                <CloudUploadOutlined
+                                    style={{ fontSize: "18px" }}
+                                />
+                            </Link>
+                        ),
+                    },
+                    {
+                        label: "Sotilgan Mahsulotlar",
+                        key: "/outcome-dryfruit",
+                        icon: (
+                            <Link to="/outcome-dryfruit">
+                                <CloudDownloadOutlined
+                                    style={{ fontSize: "18px" }}
+                                />
+                            </Link>
+                        ),
+                    },
+                    {
+                        label: "Qarzlar",
+                        key: "/debts",
+                        icon: (
+                            <Link to="/debts">
+                                <DollarCircleOutlined
+                                    style={{ fontSize: "18px" }}
+                                />
+                            </Link>
+                        ),
+                    },
+                    {
+                        label: "Qo'shimchalar",
+                        key: "others",
+                        icon: (
+                            <AppstoreAddOutlined style={{ fontSize: "18px" }} />
+                        ),
+                        children: [
+                            {
+                                label: "Klientlar",
+                                key: "/clients",
+                                icon: (
+                                    <Link to="/clients">
+                                        <TeamOutlined
+                                            style={{ fontSize: "18px" }}
+                                        />
+                                    </Link>
+                                ),
+                            },
+                            {
+                                label: "Ishchilar",
+                                key: "/worker",
+                                icon: (
+                                    <Link to="/worker">
+                                        <TeamOutlined
+                                            style={{ fontSize: "18px" }}
+                                        />
+                                    </Link>
+                                ),
+                            },
+                            {
+                                label: "Foydalanuvchilar",
+                                key: "/users",
+                                icon: (
+                                    <Link to="/users">
+                                        <UserOutlined
+                                            style={{ fontSize: "18px" }}
+                                        />
+                                    </Link>
+                                ),
+                            },
+                            {
+                                label: "Boshqalar",
+                                key: "/others",
+                                icon: (
+                                    <Link to="/others">
+                                        <AppstoreOutlined
+                                            style={{ fontSize: "18px" }}
+                                        />
+                                    </Link>
+                                ),
+                            },
+                        ],
+                    },
+                    {
                         label: "Profil",
                         key: "/profil",
                         icon: (
@@ -61,9 +172,9 @@ function DrapdownMenu({ onClose, isVisible }) {
                         label: "Chiqish",
                         key: "/logout",
                         icon: (
-                            <Button type="link" onClick={e => handleLogOut(e)}>
+                            <div type="link" onClick={(e) => handleLogOut(e)}>
                                 <LogoutOutlined style={{ fontSize: "18px" }} />
-                            </Button>
+                            </div>
                         ),
                     },
                 ]}
@@ -73,13 +184,3 @@ function DrapdownMenu({ onClose, isVisible }) {
 }
 
 export default DrapdownMenu;
-
-DrapdownMenu.propTypes = {
-    onClose: PropTypes.func,
-    isVisible: PropTypes.bool,
-};
-
-DrapdownMenu.defaultProps = {
-    onClose: e => console.log(e),
-    isVisible: false,
-};

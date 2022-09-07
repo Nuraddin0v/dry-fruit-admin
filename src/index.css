@@ -1,3 +1,95 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    height: 100%;
+    font-family: "Poppins", sans-serif;
+}
+
+html:focus-within {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-size: 100%;
+    color: #232323;
+    line-height: 1;
+    background-color: #f8f8f8;
+    -webkit-text-size-adjust: 100%;
+}
+
+header,
+nav,
+main,
+aside,
+section,
+article,
+footer {
+    display: block;
+}
+
+ul,
+ol {
+    list-style: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+img {
+    border: none;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+    display: block;
+    max-width: 100%;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    overflow-wrap: break-word;
+    hyphens: auto;
+}
+
+blockquote,
+q {
+    quotes: none;
+}
+
+p {
+    font-family: inherit;
+    letter-spacing: inherit;
+}
+
+li {
+    margin-bottom: 0;
+}
+
 ::-webkit-scrollbar {
     width: 8px;
 }
@@ -28,8 +120,26 @@
     padding: 0 25px !important;
 }
 
+.ant-form-item {
+    margin-bottom: 7px;
+}
+
 .burger-menu {
     display: none;
+}
+
+.add-button {
+    margin-bottom: 15px;
+}
+
+.select-add {
+    margin-bottom: 15px;
+}
+
+.buttons {
+    display: flex !important;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .ant-space-align-center.profil-buttons {

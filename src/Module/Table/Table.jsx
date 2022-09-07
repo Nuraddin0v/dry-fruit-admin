@@ -13,11 +13,11 @@ import { useData } from "../../Hook/UseData";
 
 const { Option } = Select;
 const { RangePicker } = DatePicker;
-const disabledDate = current => {
+const disabledDate = (current) => {
     return current > moment().endOf("day") && current;
 };
 
-const CustomTable = props => {
+const CustomTable = (props) => {
     const {
         getData,
         tableData,
@@ -53,12 +53,12 @@ const CustomTable = props => {
             : getData(pageNumber - 1, page);
     };
 
-    const handleChange = value => {
+    const handleChange = (value) => {
         setCurrent(1);
         getDataTimely(value, 0, pageSize);
     };
 
-    const handleBranchChange = value => {
+    const handleBranchChange = (value) => {
         setCurrent(1);
         getDataBranch(value, 0, pageSize);
     };
@@ -73,7 +73,7 @@ const CustomTable = props => {
         setSearchedColumn(dataIndex);
     };
 
-    const handleReset = clearFilters => {
+    const handleReset = (clearFilters) => {
         clearFilters();
         setSearchText("");
     };
@@ -94,7 +94,7 @@ const CustomTable = props => {
                     ref={searchInput}
                     placeholder={`Qidirish ${title}`}
                     value={selectedKeys[0]}
-                    onChange={e =>
+                    onChange={(e) =>
                         setSelectedKeys(e.target.value ? [e.target.value] : [])
                     }
                     onPressEnter={() =>
@@ -146,7 +146,7 @@ const CustomTable = props => {
                 </Space>
             </div>
         ),
-        filterIcon: filtered => (
+        filterIcon: (filtered) => (
             <SearchOutlined
                 style={{
                     color: filtered ? "#1890ff" : undefined,
@@ -158,12 +158,12 @@ const CustomTable = props => {
                 .toString()
                 .toLowerCase()
                 .includes(value.toLowerCase()),
-        onFilterDropdownVisibleChange: visible => {
+        onFilterDropdownVisibleChange: (visible) => {
             if (visible) {
                 setTimeout(() => searchInput.current?.select(), 100);
             }
         },
-        render: text =>
+        render: (text) =>
             searchedColumn === dataIndex ? (
                 <Highlighter
                     highlightStyle={{
@@ -183,16 +183,16 @@ const CustomTable = props => {
         setSelectedRowKeys([[...selectedRowKeys], [...record]]);
     };
 
-    const handleSelect = record => {
+    const handleSelect = (record) => {
         if (!selectedRowKeys[0].includes(record.id)) {
-            setSelectedRowKeys(prev => [
+            setSelectedRowKeys((prev) => [
                 [...prev[0], record.id],
                 [...prev[1], record],
             ]);
         } else {
-            setSelectedRowKeys(prev => {
-                const arr = prev[0].filter(key => key !== record.id);
-                const arr1 = prev[1].filter(key => key.id !== record.id);
+            setSelectedRowKeys((prev) => {
+                const arr = prev[0].filter((key) => key !== record.id);
+                const arr1 = prev[1].filter((key) => key.id !== record.id);
                 return [[...arr], [...arr1]];
             });
         }
@@ -203,12 +203,12 @@ const CustomTable = props => {
         onChange: onSelectChange,
     };
 
-    const arr = columns.map(item =>
+    const arr = columns.map((item) =>
         item.search === true
             ? { ...item, ...getColumnSearchProps(item.dataIndex, item.title) }
             : { ...item }
     );
-    arr.map(item => delete item.search);
+    arr.map((item) => delete item.search);
 
     const dataTableColumns = [...arr];
 
@@ -234,7 +234,7 @@ const CustomTable = props => {
                                 className="select-add"
                                 onChange={handleBranchChange}
                             >
-                                {branch.map(item => (
+                                {branch.map((item) => (
                                     <Option key={item.id} value={item.id}>
                                         {item.name}
                                     </Option>
@@ -259,7 +259,7 @@ const CustomTable = props => {
                             className="select-add"
                             onChange={handleChange}
                         >
-                            {timelySelect.map(item => (
+                            {timelySelect.map((item) => (
                                 <Option key={item.value} value={item.value}>
                                     {item.title}
                                 </Option>
@@ -272,7 +272,7 @@ const CustomTable = props => {
                                 style={{ marginRight: "10px" }}
                                 className="select-add"
                                 disabledDate={disabledDate}
-                                onChange={val =>
+                                onChange={(val) =>
                                     val
                                         ? setDate([
                                               val[0].toISOString(),
@@ -356,7 +356,7 @@ const CustomTable = props => {
                 bordered
                 rowKey={"id"}
                 scroll={{ x: true }}
-                onRow={record => ({
+                onRow={(record) => ({
                     onClick: () => {
                         handleSelect(record);
                     },

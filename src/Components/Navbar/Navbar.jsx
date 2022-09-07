@@ -13,6 +13,7 @@ import {
     AppstoreAddOutlined,
     TeamOutlined,
     AppstoreOutlined,
+    BranchesOutlined,
 } from "@ant-design/icons";
 import {
     Link,
@@ -223,6 +224,17 @@ function Navbar() {
                                     icon: (
                                         <Link to="/users">
                                             <UserOutlined
+                                                style={{ fontSize: "18px" }}
+                                            />
+                                        </Link>
+                                    ),
+                                },
+                                {
+                                    label: "Filiallar",
+                                    key: "/branchs",
+                                    icon: (
+                                        <Link to="/branchs">
+                                            <BranchesOutlined
                                                 style={{ fontSize: "18px" }}
                                             />
                                         </Link>

@@ -21,6 +21,8 @@ import Worker from "./Others/Worker/Worker";
 import OutcomeDryFruit from "./OutcomeDryFruit/OutcomeDryFruit";
 import WarehouseDryfruit from "./WarehouseDryfruit/WarehouseDryfruit";
 import Others from "./Others/Others/Others";
+import BranchVsRole from "./Others/BranchVsRole/Branch";
+import Branch from "./Others/BranchVsRole/Branch";
 
 function App() {
     // const { token } = useToken();
@@ -49,6 +51,7 @@ function App() {
                 <Route path="users" element={<Users />} />
                 <Route path="worker" element={<Worker />} />
                 <Route path="others" element={<Others />} />
+                <Route path="branchs" element={<Branch />} />
                 <Route path="profil" element={<Profil />} />
             </Route>
             <Route path="login" element={<Login />} />

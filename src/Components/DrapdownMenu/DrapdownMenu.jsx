@@ -12,6 +12,7 @@ import {
     AppstoreAddOutlined,
     TeamOutlined,
     AppstoreOutlined,
+    BranchesOutlined,
 } from "@ant-design/icons";
 import useToken from "../../Hook/UseToken";
 // import { useData } from "../../Hook/UseData";
@@ -141,6 +142,17 @@ function DrapdownMenu({ onClose, isVisible }) {
                                 icon: (
                                     <Link to="/users">
                                         <UserOutlined
+                                            style={{ fontSize: "18px" }}
+                                        />
+                                    </Link>
+                                ),
+                            },
+                            {
+                                label: "Filiallar",
+                                key: "/branchs",
+                                icon: (
+                                    <Link to="/branchs">
+                                        <BranchesOutlined
                                             style={{ fontSize: "18px" }}
                                         />
                                     </Link>

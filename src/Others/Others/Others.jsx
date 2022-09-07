@@ -1,4 +1,3 @@
-import BranchVsRole from "../BranchVsRole/BranchVsRole";
 import CategoryVsMeasurement from "../CategoryVsMeasurement/CategoryVsMeasurement";
 
 const Others = () => {
@@ -7,11 +6,8 @@ const Others = () => {
             style={{
                 display: "flex",
                 flexDirection: "column",
-                justifyContent: "center",
-                alignItems: "center",
             }}
         >
-            <BranchVsRole />
             <CategoryVsMeasurement />
         </div>
     );

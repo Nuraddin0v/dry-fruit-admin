@@ -70,7 +70,7 @@ const Clients = () => {
                 `api/dry/fruit/api/dry/fruit/client?fio=${values.fio}&phoneNumber=${values.phoneNumber}&address=${values.address}`
             )
             .then(function (response) {
-                message.success("Klient muvofaqiyatli qo'shildi");
+                message.success("Klient muvaffaqiyatli qo'shildi");
                 getClients(current - 1, pageSize);
             })
             .catch(function (error) {
@@ -91,7 +91,7 @@ const Clients = () => {
                 `api/dry/fruit/api/dry/fruit/client?id=${initial.id}&fio=${values.fio}&phoneNumber=${values.phoneNumber}&address=${values.address}&deleted=false`
             )
             .then((res) => {
-                message.success("Klient muvofaqiyatli taxrirlandi");
+                message.success("Klient muvaffaqiyatli taxrirlandi");
                 getClients(current - 1, pageSize);
             })
             .catch(function (error) {
@@ -111,7 +111,7 @@ const Clients = () => {
                 .delete(`api/dry/fruit/api/dry/fruit/client/${item}`)
                 .then((data) => {
                     getClients(current - 1, pageSize);
-                    message.success("Klient muvofaqiyatli o'chirildi");
+                    message.success("Klient muvaffaqiyatli o'chirildi");
                 })
                 .catch((error) => {
                     console.error(error);

@@ -100,12 +100,45 @@ function DrapdownMenu({ onClose, isVisible }) {
                         label: "Qarzlar",
                         key: "/debts",
                         icon: (
-                            <Link to="/debts">
-                                <DollarCircleOutlined
-                                    style={{ fontSize: "18px" }}
-                                />
-                            </Link>
+                            <DollarCircleOutlined
+                                style={{ fontSize: "18px" }}
+                            />
                         ),
+                        children: [
+                            {
+                                label: "Ichki qarzlar",
+                                key: "/indebts",
+                                icon: (
+                                    <Link to="/indebts">
+                                        <DollarCircleOutlined
+                                            style={{ fontSize: "18px" }}
+                                        />
+                                    </Link>
+                                ),
+                            },
+                            {
+                                label: "Tashqi qarzlar",
+                                key: "/outdebts",
+                                icon: (
+                                    <Link to="/outdebts">
+                                        <DollarCircleOutlined
+                                            style={{ fontSize: "18px" }}
+                                        />
+                                    </Link>
+                                ),
+                            },
+                            {
+                                label: "Ishchilar qarzlar",
+                                key: "/worker-debts",
+                                icon: (
+                                    <Link to="/worker-debts">
+                                        <DollarCircleOutlined
+                                            style={{ fontSize: "18px" }}
+                                        />
+                                    </Link>
+                                ),
+                            },
+                        ],
                     },
                     {
                         label: "Qo'shimchalar",

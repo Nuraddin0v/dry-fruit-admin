@@ -92,6 +92,7 @@ li {
 
 ::-webkit-scrollbar {
     width: 8px;
+    height: 12px;
 }
 
 ::-webkit-scrollbar-track {
@@ -118,6 +119,10 @@ li {
 
 .ant-layout-header {
     padding: 0 25px !important;
+}
+
+.ant-form-vertical .ant-form-item-label {
+    padding: 0 0 3px;
 }
 
 .ant-form-item {
@@ -215,6 +220,10 @@ li {
         font-size: 16px !important;
     }
 
+    .ant-table-tbody > tr > td {
+        padding: 10px 5px;
+    }
+
     .ant-statistic-title {
         font-size: 13px !important;
     }
@@ -225,5 +234,9 @@ li {
 
     .statistic .ant-col-12 {
         padding: 0 1px !important;
+    }
+
+    .ant-table-pagination-right {
+        justify-content: center;
     }
 }

@@ -186,6 +186,41 @@ function Navbar() {
                                     />
                                 </Link>
                             ),
+                            children: [
+                                {
+                                    label: "Ichki qarzlar",
+                                    key: "/indebts",
+                                    icon: (
+                                        <Link to="/indebts">
+                                            <DollarCircleOutlined
+                                                style={{ fontSize: "18px" }}
+                                            />
+                                        </Link>
+                                    ),
+                                },
+                                {
+                                    label: "Tashqi qarzlar",
+                                    key: "/outdebts",
+                                    icon: (
+                                        <Link to="/outdebts">
+                                            <DollarCircleOutlined
+                                                style={{ fontSize: "18px" }}
+                                            />
+                                        </Link>
+                                    ),
+                                },
+                                {
+                                    label: "Ishchilar qarzlar",
+                                    key: "/worker-debts",
+                                    icon: (
+                                        <Link to="/worker-debts">
+                                            <DollarCircleOutlined
+                                                style={{ fontSize: "18px" }}
+                                            />
+                                        </Link>
+                                    ),
+                                },
+                            ],
                         },
                         {
                             label: "Qo'shimchalar",

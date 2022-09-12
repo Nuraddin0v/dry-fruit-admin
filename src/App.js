@@ -9,7 +9,7 @@ import Clients from "./Clients/Clients";
 // import { useData } from "./Hook/UseData";
 import LayoutMenu from "./Components/Layout/Layout";
 import Dashboard from "./Dashboard/Dashboard";
-import Debt from "./Debt/Debt";
+import WorkerDebt from "./Debt/WorkerDebt";
 import DryFruit from "./DryFruit/DryFruit";
 import IncomeDryFruit from "./IncomeDryFruit/IncomeDryFruit";
 import Login from "./Login/Login";
@@ -21,8 +21,9 @@ import Worker from "./Others/Worker/Worker";
 import OutcomeDryFruit from "./OutcomeDryFruit/OutcomeDryFruit";
 import WarehouseDryfruit from "./WarehouseDryfruit/WarehouseDryfruit";
 import Others from "./Others/Others/Others";
-import BranchVsRole from "./Others/BranchVsRole/Branch";
 import Branch from "./Others/BranchVsRole/Branch";
+import InDebt from "./Debt/InDebt";
+import OutDebt from "./Debt/OutDebt";
 
 function App() {
     // const { token } = useToken();
@@ -46,7 +47,9 @@ function App() {
                 />
                 <Route path="income-dryfruit" element={<IncomeDryFruit />} />
                 <Route path="outcome-dryfruit" element={<OutcomeDryFruit />} />
-                <Route path="debts" element={<Debt />} />
+                <Route path="worker-debts" element={<WorkerDebt />} />
+                <Route path="indebts" element={<InDebt />} />
+                <Route path="outdebts" element={<OutDebt />} />
                 <Route path="clients" element={<Clients />} />
                 <Route path="users" element={<Users />} />
                 <Route path="worker" element={<Worker />} />

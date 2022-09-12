@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import instance from "../../Api/Axios";
 import { message } from "antd";
 import CustomTable from "../../Module/Table/Table";
@@ -14,6 +15,7 @@ const CategoryVsMeasurement = () => {
     const [pageSizeCategory, setPageSizeCategory] = useState(10);
     const [totalItemsCategory, setTotalItemsCategory] = useState(0);
     const { getCategoryData, getMeasurementData } = useData();
+    const navigate = useNavigate();
 
     const getCategory = (current, pageSize) => {
         setLoadingCategory(true);
@@ -27,6 +29,7 @@ const CategoryVsMeasurement = () => {
             })
             .catch((error) => {
                 console.error(error);
+                if (error.response.status === 500) navigate("/server-error");
                 message.error("Kategoriyalarni yuklashda muammo bo'ldi");
             })
             .finally(() => setLoadingCategory(false));
@@ -43,6 +46,7 @@ const CategoryVsMeasurement = () => {
             })
             .catch(function (error) {
                 console.error(error);
+                if (error.response.status === 500) navigate("/server-error");
                 message.error("Kategoriyani qo'shishda muammo bo'ldi");
             })
             .finally(() => {
@@ -61,6 +65,7 @@ const CategoryVsMeasurement = () => {
             })
             .catch(function (error) {
                 console.error(error);
+                if (error.response.status === 500) navigate("/server-error");
                 message.error("Kategoriyani qo'shishda muammo bo'ldi");
             })
             .finally(() => {
@@ -81,6 +86,8 @@ const CategoryVsMeasurement = () => {
                 })
                 .catch((error) => {
                     console.error(error);
+                    if (error.response.status === 500)
+                        navigate("/server-error");
                     message.error("Kategoriyani o'chirishda muammo bo'ldi");
                 });
             return null;
@@ -107,6 +114,7 @@ const CategoryVsMeasurement = () => {
             })
             .catch((error) => {
                 console.error(error);
+                if (error.response.status === 500) navigate("/server-error");
                 message.error("O'lchov birligilarni yuklashda muammo bo'ldi");
             })
             .finally(() => setLoading(false));
@@ -125,6 +133,7 @@ const CategoryVsMeasurement = () => {
             })
             .catch(function (error) {
                 console.error(error);
+                if (error.response.status === 500) navigate("/server-error");
                 message.error("O'lchov birligini qo'shishda muammo bo'ldi");
             })
             .finally(() => {
@@ -143,6 +152,7 @@ const CategoryVsMeasurement = () => {
             })
             .catch(function (error) {
                 console.error(error);
+                if (error.response.status === 500) navigate("/server-error");
                 message.error("O'lchov birligini qo'shishda muammo bo'ldi");
             })
             .finally(() => {
@@ -163,6 +173,8 @@ const CategoryVsMeasurement = () => {
                 })
                 .catch((error) => {
                     console.error(error);
+                    if (error.response.status === 500)
+                        navigate("/server-error");
                     message.error(
                         "O'lchov birligini o'chirishda muammo bo'ldi"
                     );

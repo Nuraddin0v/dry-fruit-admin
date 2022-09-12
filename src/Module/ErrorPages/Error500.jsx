@@ -9,7 +9,7 @@ const Error500 = () => {
             <img className="error500" src={rasm} alt="404 page" />
             <h1>Serverda muammo bo'ldi</h1>
             <p>
-                Kechirasiz serverda muammo topilmadi!
+                Kechirasiz serverda muammo topildi!{" "}
                 <a href="https://t.me/zukhriddin_08">Bizga murojaat</a>{" "}
                 qilishingizni so'raymiz.
             </p>

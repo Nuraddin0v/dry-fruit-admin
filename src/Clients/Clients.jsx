@@ -2,7 +2,7 @@ import { useState } from "react";
 import instance from "../Api/Axios";
 import { message } from "antd";
 import CustomTable from "../Module/Table/Table";
-import { useData } from "../Hook/UseData";
+import { useNavigate } from "react-router-dom";
 
 const Clients = () => {
     const [clients, setClients] = useState([]);
@@ -10,7 +10,7 @@ const Clients = () => {
     const [current, setCurrent] = useState(1);
     const [pageSize, setPageSize] = useState(10);
     const [totalItems, setTotalItems] = useState(0);
-    const { categoryData } = useData();
+    const navigate = useNavigate();
 
     const getClients = (current, pageSize) => {
         setLoading(true);
@@ -24,6 +24,7 @@ const Clients = () => {
             })
             .catch((error) => {
                 console.error(error);
+                if (error.response.status === 500) navigate("/server-error");
                 message.error("Klientlarni yuklashda muammo bo'ldi");
             })
             .finally(() => setLoading(false));
@@ -74,6 +75,7 @@ const Clients = () => {
             })
             .catch(function (error) {
                 console.error(error);
+                if (error.response.status === 500) navigate("/server-error");
                 message.error("Klientni qo'shishda muammo bo'ldi");
             })
             .finally(() => {
@@ -94,6 +96,7 @@ const Clients = () => {
             })
             .catch(function (error) {
                 console.error("Error in edit: ", error);
+                if (error.response.status === 500) navigate("/server-error");
                 message.error("Klientni taxrirlashda muammo bo'ldi");
             })
             .finally(() => {
@@ -112,6 +115,8 @@ const Clients = () => {
                 })
                 .catch((error) => {
                     console.error(error);
+                    if (error.response.status === 500)
+                        navigate("/server-error");
                     message.error("Klientni o'chirishda muammo bo'ldi");
                 });
             return null;

@@ -3,6 +3,7 @@ import instance from "../Api/Axios";
 import moment from "moment";
 import { message } from "antd";
 import CustomTable from "../Module/Table/Table";
+import { useNavigate } from "react-router-dom";
 import { useData } from "../Hook/UseData";
 
 const IncomeDryFruit = () => {
@@ -11,9 +12,11 @@ const IncomeDryFruit = () => {
     const [current, setCurrent] = useState(1);
     const [pageSize, setPageSize] = useState(10);
     const [totalItems, setTotalItems] = useState(0);
-    const { fuelsData, employe } = useData();
+    const { newDryFruitData, measurementData, dryfruitWarehouseData } =
+        useData();
+    const navigate = useNavigate();
 
-    const getIncomeFuels = (current, pageSize) => {
+    const getIncomeDryFruits = (current, pageSize) => {
         setLoading(true);
         instance
             .get(
@@ -23,7 +26,7 @@ const IncomeDryFruit = () => {
                 const fuel = data.data.data.dryFruit.map((item) => {
                     return {
                         ...item,
-                        incomeTime: moment(item.incomeTime).toISOString(),
+                        date: moment(item.date).format("DD-MM-YYYY"),
                     };
                 });
                 setIncomeFuel(fuel);
@@ -31,22 +34,51 @@ const IncomeDryFruit = () => {
             })
             .catch((error) => {
                 console.error(error);
-                message.error("Kelgan mevalarni yuklashda muammo bo'ldi");
+                if (error.response.status === 500) navigate("/server-error");
+                message.error("Kelgan quruq mevalarni yuklashda muammo bo'ldi");
             })
             .finally(() => setLoading(false));
     };
 
     const columns = [
         {
-            title: "Yoqilg'i turi",
-            dataIndex: "fuelId",
-            key: "fuelId",
-            width: "15%",
-            search: false,
+            title: "Ombordagi quruq meva",
+            dataIndex: "dryFruitWarehouseId",
+            key: "dryFruitWarehouseId",
+            width: "20%",
             render: (record) => {
-                const fuel = fuelsData.filter((item) => item.id === record);
-                return fuel[0]?.type;
+                const data = dryfruitWarehouseData.filter(
+                    (item) => item.id === record
+                );
+                return data[0]?.name;
             },
+            search: false,
+        },
+        {
+            title: "Quruq meva turi",
+            dataIndex: "dryFruitId",
+            key: "dryFruitId",
+            width: "15%",
+            render: (record) => {
+                const data = newDryFruitData.filter(
+                    (item) => item.id === record
+                );
+                return data[0]?.name;
+            },
+            search: false,
+        },
+        {
+            title: "O'lchovi",
+            dataIndex: "measurementId",
+            key: "measurementId",
+            width: "15%",
+            render: (record) => {
+                const data = measurementData.filter(
+                    (item) => item.id === record
+                );
+                return data[0]?.name;
+            },
+            search: false,
         },
         {
             title: "Miqdori",
@@ -65,46 +97,18 @@ const IncomeDryFruit = () => {
             search: false,
         },
         {
-            title: "Hisoblagich",
-            dataIndex: "counter",
-            key: "counter",
-            width: "10%",
-            search: false,
-        },
-        {
-            title: "Narxi",
-            dataIndex: "incomePrice",
-            key: "incomePrice",
-            width: "10%",
-            search: false,
-        },
-        {
-            title: "Sotilish narxi",
-            dataIndex: "salePrice",
-            key: "salePrice",
-            width: "10%",
+            title: "Kelish narxi",
+            dataIndex: "price",
+            key: "price",
+            width: "15%",
             search: false,
         },
         {
             title: "Kelish vaqti",
-            dataIndex: "incomeTime",
-            key: "incomeTime",
+            dataIndex: "date",
+            key: "date",
             width: "15%",
             search: false,
-            render: (record) => {
-                return record.substr(0, 10);
-            },
-        },
-        {
-            title: "Qabul qilgan hodim",
-            dataIndex: "employeeId",
-            key: "employeeId",
-            width: "20%",
-            search: false,
-            render: (record) => {
-                const fuel = employe.filter((item) => item.id === record);
-                return fuel[0]?.fio;
-            },
         },
         {
             title: "Qarzdorlik",
@@ -122,41 +126,45 @@ const IncomeDryFruit = () => {
         setLoading(true);
         const value = {
             ...values,
-            incomeTime: values.incomeTime.toISOString(),
+            date: values.date.toISOString(),
             debt: values.debt.target.value,
         };
         instance
-            .post("api/oil/station/incomeFuel", { ...value })
+            .post("api/dry/fruit/incomeDryFruit/add", { ...value })
             .then(function (response) {
-                message.success("Kelgan meva muvaffaqiyatli qo'shildi");
-                getIncomeFuels(current - 1, pageSize);
+                message.success("Kelgan quruq meva muvofaqiyatli qo'shildi");
+                getIncomeDryFruits(current - 1, pageSize);
             })
             .catch(function (error) {
                 console.error(error);
-                message.error("Kelgan mevani qo'shishda muammo bo'ldi");
+                if (error.response.status === 500) navigate("/server-error");
+                message.error("Kelgan quruq mevani qo'shishda muammo bo'ldi");
             })
             .finally(() => {
                 setLoading(false);
             });
     };
+
     const onEdit = (values, initial) => {
         setLoading(true);
-        const time = values.incomeTime.toISOString().substr(0, 10);
+        const time = moment(values.date, "DD-MM-YYYY").toISOString();
         const data = {
             ...values,
             debt: values.debt.target.value,
-            incomeTime: time,
-            id: initial.id,
+            date: time,
         };
         instance
-            .put(`api/oil/station/incomeFuel/${initial.id}`, { ...data })
+            .put(`api/dry/fruit/incomeDryFruit/update${initial.id}`, {
+                ...data,
+            })
             .then((res) => {
-                message.success("Kelgan meva muvaffaqiyatli taxrirlandi");
-                getIncomeFuels(current - 1, pageSize);
+                message.success("Kelgan quruq meva muvofaqiyatli taxrirlandi");
+                getIncomeDryFruits(current - 1, pageSize);
             })
             .catch(function (error) {
                 console.error("Error in edit: ", error);
-                message.error("Kelgan mevani taxrirlashda muammo bo'ldi");
+                if (error.response.status === 500) navigate("/server-error");
+                message.error("Kelgan quruq mevani taxrirlashda muammo bo'ldi");
             })
             .finally(() => {
                 setLoading(false);
@@ -167,15 +175,19 @@ const IncomeDryFruit = () => {
         setLoading(true);
         arr.map((item) => {
             instance
-                .delete(`api/oil/station/incomeFuel/${item}`)
+                .delete(`api/dry/fruit/incomeDryFruit/delete${item}`)
                 .then((data) => {
-                    getIncomeFuels(current - 1, pageSize);
-                    message.success("Kelgan meva muvaffaqiyatli o'chirildi");
+                    getIncomeDryFruits(current - 1, pageSize);
+                    message.success(
+                        "Kelgan quruq meva muvofaqiyatli o'chirildi"
+                    );
                 })
                 .catch((error) => {
                     console.error(error);
+                    if (error.response.status === 500)
+                        navigate("/server-error");
                     message.error(
-                        "Kelgan Yoqilg'ini o'chirishda muammo bo'ldi"
+                        "Kelgan quruq mevani o'chirishda muammo bo'ldi"
                     );
                 });
             return null;
@@ -189,7 +201,7 @@ const IncomeDryFruit = () => {
                 onEdit={onEdit}
                 onCreate={onCreate}
                 onDelete={handleDelete}
-                getData={getIncomeFuels}
+                getData={getIncomeDryFruits}
                 columns={columns}
                 tableData={incomeFuel}
                 current={current}

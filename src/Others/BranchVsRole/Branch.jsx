@@ -4,6 +4,7 @@ import { message } from "antd";
 import CustomTable from "../../Module/Table/Table";
 import { useData } from "../../Hook/UseData";
 import "./Branch.css";
+import { useNavigate } from "react-router-dom";
 
 const Branch = () => {
     const [branches, setBranches] = useState([]);
@@ -12,6 +13,7 @@ const Branch = () => {
     const [pageSize, setPageSize] = useState(10);
     const [totalItems, setTotalItems] = useState(0);
     const { getBranchData } = useData();
+    const navigate = useNavigate();
 
     const getBranches = (current, pageSize) => {
         setLoading(true);
@@ -25,6 +27,7 @@ const Branch = () => {
             })
             .catch((error) => {
                 console.error(error);
+                if (error.response.status === 500) navigate("/server-error");
                 message.error("Filiallarni yuklashda muammo bo'ldi");
             })
             .finally(() => setLoading(false));
@@ -43,6 +46,7 @@ const Branch = () => {
             })
             .catch(function (error) {
                 console.error(error);
+                if (error.response.status === 500) navigate("/server-error");
                 message.error("Filialni qo'shishda muammo bo'ldi");
             })
             .finally(() => {
@@ -63,6 +67,7 @@ const Branch = () => {
             })
             .catch(function (error) {
                 console.error(error);
+                if (error.response.status === 500) navigate("/server-error");
                 message.error("Filialni qo'shishda muammo bo'ldi");
             })
             .finally(() => {
@@ -82,6 +87,8 @@ const Branch = () => {
                 })
                 .catch((error) => {
                     console.error(error);
+                    if (error.response.status === 500)
+                        navigate("/server-error");
                     message.error("Filialni o'chirishda muammo bo'ldi");
                 });
             return null;

@@ -3,6 +3,7 @@ import instance from "../Api/Axios";
 import { message } from "antd";
 import CustomTable from "../Module/Table/Table";
 import { useData } from "../Hook/UseData";
+import { useNavigate } from "react-router-dom";
 
 const DryFruit = () => {
     const [incomeDryFruits, setIncomeDryFruits] = useState([]);
@@ -11,6 +12,7 @@ const DryFruit = () => {
     const [pageSize, setPageSize] = useState(10);
     const [totalItems, setTotalItems] = useState(0);
     const { categoryData } = useData();
+    const navigate = useNavigate();
 
     const getIncomeDryFruits = (current, pageSize) => {
         setLoading(true);
@@ -24,6 +26,7 @@ const DryFruit = () => {
             })
             .catch((error) => {
                 console.error(error);
+                if (error.response.status === 500) navigate("/server-error");
                 message.error("Kelgan quruq mevalarni yuklashda muammo bo'ldi");
             })
             .finally(() => setLoading(false));
@@ -85,6 +88,7 @@ const DryFruit = () => {
             })
             .catch(function (error) {
                 console.error(error);
+                if (error.response.status === 500) navigate("/server-error");
                 message.error("Kelgan quruq mevani qo'shishda muammo bo'ldi");
             })
             .finally(() => {
@@ -102,6 +106,7 @@ const DryFruit = () => {
             })
             .catch(function (error) {
                 console.error("Error in edit: ", error);
+                if (error.response.status === 500) navigate("/server-error");
                 message.error("Kelgan quruq mevani taxrirlashda muammo bo'ldi");
             })
             .finally(() => {
@@ -122,6 +127,8 @@ const DryFruit = () => {
                 })
                 .catch((error) => {
                     console.error(error);
+                    if (error.response.status === 500)
+                        navigate("/server-error");
                     message.error(
                         "Kelgan quruq mevani o'chirishda muammo bo'ldi"
                     );

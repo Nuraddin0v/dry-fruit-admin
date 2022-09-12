@@ -31,7 +31,7 @@ const IncomeDryFruit = () => {
             })
             .catch((error) => {
                 console.error(error);
-                message.error("Kelgan yoqilg'ilarni yuklashda muammo bo'ldi");
+                message.error("Kelgan mevalarni yuklashda muammo bo'ldi");
             })
             .finally(() => setLoading(false));
     };
@@ -128,12 +128,12 @@ const IncomeDryFruit = () => {
         instance
             .post("api/oil/station/incomeFuel", { ...value })
             .then(function (response) {
-                message.success("Kelgan yoqilg'i muvofaqiyatli qo'shildi");
+                message.success("Kelgan meva muvaffaqiyatli qo'shildi");
                 getIncomeFuels(current - 1, pageSize);
             })
             .catch(function (error) {
                 console.error(error);
-                message.error("Kelgan yoqilg'ini qo'shishda muammo bo'ldi");
+                message.error("Kelgan mevani qo'shishda muammo bo'ldi");
             })
             .finally(() => {
                 setLoading(false);
@@ -151,12 +151,12 @@ const IncomeDryFruit = () => {
         instance
             .put(`api/oil/station/incomeFuel/${initial.id}`, { ...data })
             .then((res) => {
-                message.success("Kelgan yoqilg'i muvofaqiyatli taxrirlandi");
+                message.success("Kelgan meva muvaffaqiyatli taxrirlandi");
                 getIncomeFuels(current - 1, pageSize);
             })
             .catch(function (error) {
                 console.error("Error in edit: ", error);
-                message.error("Kelgan yoqilg'ini taxrirlashda muammo bo'ldi");
+                message.error("Kelgan mevani taxrirlashda muammo bo'ldi");
             })
             .finally(() => {
                 setLoading(false);
@@ -170,7 +170,7 @@ const IncomeDryFruit = () => {
                 .delete(`api/oil/station/incomeFuel/${item}`)
                 .then((data) => {
                     getIncomeFuels(current - 1, pageSize);
-                    message.success("Kelgan Yoqilg'i muvofaqiyatli o'chirildi");
+                    message.success("Kelgan meva muvaffaqiyatli o'chirildi");
                 })
                 .catch((error) => {
                     console.error(error);

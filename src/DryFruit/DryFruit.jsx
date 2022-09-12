@@ -80,7 +80,7 @@ const DryFruit = () => {
         instance
             .post("api/dry/fruit/dryFruit/add", { ...values })
             .then(function (response) {
-                message.success("Kelgan quruq meva muvofaqiyatli qo'shildi");
+                message.success("Kelgan quruq meva muvaffaqiyatli qo'shildi");
                 getIncomeDryFruits(current - 1, pageSize);
             })
             .catch(function (error) {
@@ -97,7 +97,7 @@ const DryFruit = () => {
         instance
             .put(`api/dry/fruit/dryFruit/update${initial.id}`, { ...values })
             .then((res) => {
-                message.success("Kelgan quruq meva muvofaqiyatli taxrirlandi");
+                message.success("Kelgan quruq meva muvaffaqiyatli taxrirlandi");
                 getIncomeDryFruits(current - 1, pageSize);
             })
             .catch(function (error) {
@@ -117,7 +117,7 @@ const DryFruit = () => {
                 .then((data) => {
                     getIncomeDryFruits(current - 1, pageSize);
                     message.success(
-                        "Kelgan quruq meva muvofaqiyatli o'chirildi"
+                        "Kelgan quruq meva muvaffaqiyatli o'chirildi"
                     );
                 })
                 .catch((error) => {

@@ -133,6 +133,73 @@ export const DataProvider = ({ children }) => {
         },
     ];
 
+    const workersData = [
+        {
+            name: "fio",
+            label: "Ishchi FIO",
+            input: <Input />,
+        },
+        {
+            name: "phoneNumber",
+            label: "Ishchi nomeri",
+            input: <Input />,
+        },
+    ];
+
+    const outcomeDryfruitData = [
+        {
+            name: "categoryId",
+            label: "Kategoriyani tanlang",
+            inputSelect: (defaultId = null) => {
+                return (
+                    <CustomSelect
+                        DValue={defaultId}
+                        backValue={"id"}
+                        placeholder={"Kategoriyani tanlang"}
+                        selectData={categoryData}
+                    />
+                );
+            },
+        },
+        {
+            name: "incomePrice",
+            label: "Kelish narxi",
+            input: <InputNumber style={{ width: "100%" }} />,
+        },
+        {
+            name: "outcomePrice",
+            label: "Sotilish narxi",
+            input: <InputNumber style={{ width: "100%" }} />,
+        },
+        {
+            name: "debt",
+            label: "Qarzdorlik",
+            inputSelect: (defaultId = null) => {
+                return (
+                    <CustomSelect
+                        DValue={defaultId}
+                        backValue={"id"}
+                        placeholder={"Kategoriyani tanlang"}
+                        selectData={categoryData}
+                    />
+                );
+            },
+        },
+    ];
+
+    const dryFruitWarehouse = [
+        {
+            name: "name",
+            label: "Meva nomi",
+            input: <Input />,
+        },
+        {
+            name: "id",
+            label: "Meva id",
+            input: <Input />,
+        },
+    ];
+
     const getMeasurementData = () => {
         instance
             .get("api/dry/fruit/measurement/all")
@@ -235,6 +302,66 @@ export const DataProvider = ({ children }) => {
                 timelyInfo: false,
                 editModalTitle: "Filialni o'zgartirish",
                 modalTitle: "Yangi filial qo'shish",
+            };
+            break;
+        }
+        case "/worker": {
+            formData = {
+                formData: workersData,
+                editFormData: workersData,
+                branchData: false,
+                timeFilterInfo: false,
+                deleteInfo: true,
+                createInfo: true,
+                editInfo: true,
+                timelyInfo: false,
+                editModalTitle: "Ishchini o'zgartirish",
+                modalTitle: "Yangi ishchi qo'shish",
+            };
+            break;
+        }
+        case "/users": {
+            formData = {
+                formData: workersData,
+                editFormData: workersData,
+                branchData: false,
+                timeFilterInfo: false,
+                deleteInfo: true,
+                createInfo: true,
+                editInfo: true,
+                timelyInfo: false,
+                editModalTitle: "Ishchini o'zgartirish",
+                modalTitle: "Yangi ishchi qo'shish",
+            };
+            break;
+        }
+        case "/outcome-dryfruit": {
+            formData = {
+                formData: outcomeDryfruitData,
+                editFormData: outcomeDryfruitData,
+                branchData: false,
+                timeFilterInfo: false,
+                deleteInfo: true,
+                createInfo: true,
+                editInfo: true,
+                timelyInfo: false,
+                editModalTitle: "Ishchini o'zgartirish",
+                modalTitle: "Yangi ishchi qo'shish",
+            };
+            break;
+        }
+        case "/warehouse-dryfruit": {
+            formData = {
+                formData: dryFruitWarehouse,
+                editFormData: dryFruitWarehouse,
+                branchData: false,
+                timeFilterInfo: false,
+                deleteInfo: true,
+                createInfo: true,
+                editInfo: true,
+                timelyInfo: false,
+                editModalTitle: "Mevani o'zgartirish",
+                modalTitle: "Yangi meva qo'shish",
             };
             break;
         }

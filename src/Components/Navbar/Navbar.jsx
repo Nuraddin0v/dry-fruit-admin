@@ -85,6 +85,11 @@ function Navbar() {
                 width: "100%",
                 display: "flex",
                 alignItems: "center",
+                position: 'sticky',
+                top: 0,
+                left: 0,
+                right: 0,
+                zIndex: 99,
             }}
         >
             <div
@@ -106,7 +111,7 @@ function Navbar() {
                                 color: "#ff5722",
                             }}
                         >
-                            LOGO
+                            Dry Fruits
                             <i
                                 className="bx bxs-gas-pump"
                                 style={{ marginLeft: "10px", fontSize: "26px" }}
